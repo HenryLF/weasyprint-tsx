@@ -80,11 +80,12 @@ export async function loadConfig(): Promise<DConfig> {
   const configPath = resolve(process.cwd(), "weasyprint-tsx.config.ts");
   let config = defaultConfig;
   try {
-    const {default : userConfig} = await import(`${configPath}`);
+    const { default: userConfig } = await import(`${configPath}`);
     config = mergeDeep(config, userConfig) as unknown as DConfig;
-    console.log(config , userConfig)
   } catch (e) {
-    process.stdout.write(`No config file at ${configPath} found, using default.`);
+    process.stdout.write(
+      `No config file at ${configPath} found, using default.`,
+    );
   }
   return config;
 }

@@ -1,12 +1,12 @@
 {
   "name": "@weasyprint-tsx/build",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "types": "./src/index.ts",
   "bin": {
     "weasyprint-tsx": "./src/cli.ts"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "bun-types": "latest"
   },

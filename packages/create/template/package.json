@@ -1,6 +1,5 @@
 {
   "name": "my-doc",
-  "private": true,
   "scripts": {
     "build": "weasyprint-tsx",
     "dev": "weasyprint-tsx --watch",

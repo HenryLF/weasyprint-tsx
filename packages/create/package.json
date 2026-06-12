@@ -1,10 +1,11 @@
 {
   "name": "@weasyprint-tsx/create",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "bin": {
-    "create-weasyprint-tsx": "src/cli.ts"
+    "create-weasyprint-tsx": "cli.js"
   },
-  "workspaces": [
-    "packages/*"
+  "files": [
+    "cli.js",
+    "template"
   ]
 }

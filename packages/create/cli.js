@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 import { cpSync, existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { join,dirname } from "path";
+import { fileURLToPath } from "url";
 
 const name = process.argv[2] ?? "my-doc";
 const dest = join(process.cwd(), name);
-const templateDir = join(import.meta.dir, "template");
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const templateDir = join(__dirname, "template");
 
 if (existsSync(dest)) {
   process.stderr.write(`Error: directory '${name}' already exists\n`);

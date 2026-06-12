@@ -89,7 +89,7 @@ export async function buildPDF(cfg: DConfig): Promise<void> {
   const t0 = performance.now();
   const proc = Bun.spawn(args, {
     cwd: process.cwd(),
-    stderr: "inherit",
+    stderr: cfg.weasyprint.verbose ? "inherit" : "ignore",
     stdout: cfg.weasyprint.verbose ? "inherit" : "ignore",
   });
   const code = await proc.exited;
