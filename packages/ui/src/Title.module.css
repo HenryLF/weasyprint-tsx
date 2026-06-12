@@ -1,0 +1,75 @@
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  &::before {
+    float: left;
+    clear: left;
+  }
+  &[data-marker]::before {
+    content: attr(data-marker);
+  }
+}
+
+
+.h1 {
+  color: var(--h1-color, inherit);
+  font-size: var(--h1-fontsize, inherit);
+  counter-reset: count-h2 count-h3 count-h4 count-h5 count-h6;
+  counter-increment: count-h1;
+  &::before {
+    content: counter(count-h1, upper-roman) ". ";
+  }
+}
+
+.h2 {
+  color: var(--h2-color, inherit);
+  font-size: var(--h2-fontsize, inherit);
+  counter-reset: count-h3 count-h4 count-h5 count-h6;
+  counter-increment: count-h2;
+  &::before {
+    content: counter(count-h2, decimal) ". ";
+  }
+}
+
+.h3 {
+  color: var(--h3-color, inherit);
+  font-size: var(--h3-fontsize, inherit);
+  counter-reset: count-h4 count-h5 count-h6;
+  counter-increment: count-h3;
+  &::before {
+    content: counter(count-h3, lower-alpha) ". ";
+  }
+}
+
+.h4 {
+  color: var(--h4-color, inherit);
+  font-size: var(--h4-fontsize, inherit);
+  counter-reset: count-h5 count-h6;
+  counter-increment: count-h4;
+  &::before {
+    content: counter(count-h4, lower-alpha) ". ";
+  }
+}
+
+.h5 {
+  color: var(--h5-color, inherit);
+  font-size: var(--h5-fontsize, inherit);
+  counter-reset: count-h6;
+  counter-increment: count-h5;
+  &::before {
+    content: counter(count-h5, lower-alpha) ". ";
+  }
+}
+
+.h6 {
+  color: var(--h6-color, inherit);
+  font-size: var(--h6-fontsize, inherit);
+  counter-increment: count-h6;
+  &::before {
+    content: counter(count-h6, lower-alpha) ". ";
+  }
+}

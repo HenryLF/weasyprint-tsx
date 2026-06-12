@@ -1,0 +1,16 @@
+.container {
+  margin-left: calc(-1 * var(--block-box-gap, 0));
+}
+
+.block {
+  display: inline-block;
+  box-sizing: border-box;
+  width: calc(var(--ratio, 1) * 100% / var(--block-box-basis, 1));
+  vertical-align: var(--block-box-align, middle);
+  padding-left: var(--block-box-gap, 0);
+}
+
+.centered > * {
+  display: block;
+  margin: 0 auto;
+}

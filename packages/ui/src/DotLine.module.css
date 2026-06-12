@@ -1,0 +1,24 @@
+/* block mode: stacked answer lines */
+.block {
+  display: block;
+}
+
+.line {
+  display: block;
+  min-height: var(--dotline-height, 6mm);
+
+  margin-bottom: 2mm;
+  border-bottom: 1px dotted var(--dotline-color, #808080);
+  &:is(:last-child) {
+    margin-bottom: 3mm;
+  }
+}
+
+/* inline mode: fill-in-the-blank inside <p> */
+.inline {
+  display: inline-block;
+  vertical-align: baseline;
+  height: 0;
+  margin: 0 1mm;
+  border-bottom: 1px dotted var(--dotline-color, #808080);
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@weasyprint-tsx/create",
+  "version": "0.0.1",
+  "bin": {
+    "create-weasyprint-tsx": "src/cli.ts"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

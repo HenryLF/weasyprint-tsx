@@ -1,0 +1,18 @@
+{
+  "name": "my-doc",
+  "private": true,
+  "scripts": {
+    "build": "weasyprint-tsx",
+    "dev": "weasyprint-tsx --watch",
+    "setup": ". scripts/install.sh"
+  },
+  "dependencies": {
+    "@weasyprint-tsx/build": "latest",
+    "@weasyprint-tsx/ui": "latest",
+    "preact": "^10.0.0",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  }
+}

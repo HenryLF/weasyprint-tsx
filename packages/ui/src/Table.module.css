@@ -1,0 +1,55 @@
+.table {
+  --table-border-width: 1px;
+  --table-border-color: currentColor;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: var(--table-header-color, transparent);
+  font-size: var(--table-header-fontsize, inherit);
+}
+
+.table td {
+  background-color: var(--table-cell-color, transparent);
+  font-size: var(--table-cell-fontsize, inherit);
+}
+
+/* ── Row orientation ──────────────────────────────────────────── */
+.row td,
+.row th {
+  border-right: var(--table-border-width, 1px) solid var(--table-border-color, currentColor);
+  border-bottom: var(--table-border-width, 1px) solid var(--table-border-color, currentColor);
+}
+
+.row tr td:last-child,
+.row tr th:last-child {
+  border-right: none;
+}
+
+.row tr:last-child td,
+.row tr:last-child th {
+  border-bottom: none;
+}
+
+/* ── Col orientation ──────────────────────────────────────────── */
+.col td,
+.col th {
+  border-right: var(--table-border-width, 1px) solid var(--table-border-color, currentColor);
+  border-bottom: var(--table-border-width, 1px) solid var(--table-border-color, currentColor);
+}
+
+.col tr td:last-child,
+.col tr th:last-child {
+  border-right: none;
+}
+
+.col tbody tr:last-child td,
+.col tbody tr:last-child th {
+  border-bottom: none;
+}

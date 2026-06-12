@@ -1,0 +1,11 @@
+{
+  "name": "weasyprint-tsx",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bun packages/build/src/cli.ts --watch",
+    "init" : "bun packages/create/cli.ts"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
