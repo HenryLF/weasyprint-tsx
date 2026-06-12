@@ -8,138 +8,64 @@ type Hprops<h extends Htype> = ComponentProps<h> & {
   marker?: string;
   color?: string;
   fontSize?: string;
-  count?: number;
 };
 
-export function H1({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h1">) {
+export function H1({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h1">) {
   return (
     <h1
       data-marker={marker}
       className={joinClasses(className, styles.h1)}
-      style={mergeStyle(style, {
-        "--h1-color": color,
-        "--h1-fontsize": fontSize,
-        counterReset: count ? `count-h1 ${count - 1}` : undefined,
-      })}
+      style={mergeStyle(style, { "--h1-color": color, "--h1-fontsize": fontSize })}
       {...props}
     />
   );
 }
-export function H2({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h2">) {
+export function H2({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h2">) {
   return (
     <h2
       data-marker={marker}
       className={joinClasses(className, styles.h2)}
-      style={mergeStyle(style, {
-        "--h2-color": color,
-        "--h2-fontsize": fontSize,
-        counterReset: count ? `count-h2 ${count - 1}` : undefined,
-      })}
+      style={mergeStyle(style, { "--h2-color": color, "--h2-fontsize": fontSize })}
       {...props}
     />
   );
 }
-export function H3({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h3">) {
+export function H3({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h3">) {
   return (
     <h3
       data-marker={marker}
       className={joinClasses(className, styles.h3)}
-      style={mergeStyle(style, {
-        "--h3-color": color,
-        "--h3-fontsize": fontSize,
-        counterReset: count ? `count-h3 ${count - 1}` : undefined,
-      })}
+      style={mergeStyle(style, { "--h3-color": color, "--h3-fontsize": fontSize })}
       {...props}
     />
   );
 }
-export function H4({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h4">) {
+export function H4({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h4">) {
   return (
     <h4
       data-marker={marker}
       className={joinClasses(className, styles.h4)}
-      style={mergeStyle(style, {
-        "--h4-color": color,
-        "--h4-fontsize": fontSize,
-        counterReset: count ? `count-h4 ${count - 1}` : undefined,
-      })}
+      style={mergeStyle(style, { "--h4-color": color, "--h4-fontsize": fontSize })}
       {...props}
     />
   );
 }
-export function H5({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h5">) {
+export function H5({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h5">) {
   return (
     <h5
       data-marker={marker}
       className={joinClasses(className, styles.h5)}
-      style={mergeStyle(style, {
-        "--h5-color": color,
-        "--h5-fontsize": fontSize,
-        counterReset: count ? `count-h5 ${count - 1}` : undefined,
-      })}
+      style={mergeStyle(style, { "--h5-color": color, "--h5-fontsize": fontSize })}
       {...props}
     />
   );
 }
-export function H6({
-  className = "",
-  marker,
-  color,
-  fontSize,
-  style,
-  count,
-  ...props
-}: Hprops<"h6">) {
+export function H6({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h6">) {
   return (
     <h6
       data-marker={marker}
       className={joinClasses(className, styles.h6)}
-      style={mergeStyle(style, {
-        "--h6-color": color,
-        "--h6-fontsize": fontSize,
-        counterReset: count ? `count-h6 ${count - 1}` : undefined,
-
-      })}
+      style={mergeStyle(style, { "--h6-color": color, "--h6-fontsize": fontSize })}
       {...props}
     />
   );

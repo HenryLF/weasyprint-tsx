@@ -1,6 +1,13 @@
-import { ComponentChild, ComponentProps, toChildArray, VNode } from "preact";
+import {
+  ComponentChild,
+  ComponentProps,
+  toChildArray,
+  VNode
+} from "preact";
 import styles from "./Table.module.css";
 import { joinClasses, mergeStyle } from "./utils";
+
+
 
 export interface TableEntryProps extends ComponentProps<"th"> {
   content: ComponentChild[];
@@ -11,8 +18,8 @@ export interface TableEntryProps extends ComponentProps<"th"> {
   cellFontSize?: string;
 }
 
-export function Entry({ children }: TableEntryProps) {
-  return children;
+export function Entry(_props: TableEntryProps): null {
+  return null;
 }
 
 interface TableProps extends ComponentProps<"table"> {
@@ -27,6 +34,7 @@ interface TableProps extends ComponentProps<"table"> {
   borderColor?: string;
   children: VNode<TableEntryProps> | VNode<TableEntryProps>[];
 }
+
 
 export function Table({
   children,
@@ -67,21 +75,18 @@ export function Table({
       <table className={tableClass} style={tableStyle} {...props}>
         <tbody>
           {headers.map(
-            (
-              {
-                children,
-                content,
-                className,
-                contentClass,
-                style,
-                headerBg,
-                cellBg,
-                headerFontSize,
-                cellFontSize,
-                ...props
-              },
-              i,
-            ) => (
+            ({
+              children,
+              content,
+              className,
+              contentClass,
+              style,
+              headerBg,
+              cellBg,
+              headerFontSize,
+              cellFontSize,
+              ...props
+            }, i) => (
               <tr key={i}>
                 <th
                   scope="row"
@@ -98,10 +103,7 @@ export function Table({
                   <td
                     key={j}
                     className={joinClasses(contentClass, parentContentClass)}
-                    style={{
-                      "--table-cell-color": cellBg,
-                      "--table-cell-fontsize": cellFontSize,
-                    }}
+                    style={{ "--table-cell-color": cellBg, "--table-cell-fontsize": cellFontSize }}
                   >
                     {cell}
                   </td>
@@ -121,18 +123,7 @@ export function Table({
         <tr>
           {headers.map(
             (
-              {
-                children,
-                content,
-                className,
-                contentClass,
-                style,
-                headerBg,
-                cellBg,
-                headerFontSize,
-                cellFontSize,
-                ...props
-              },
+              { children, content, className, contentClass, style, headerBg, cellBg, headerFontSize, cellFontSize, ...props },
               i,
             ) => (
               <th
@@ -154,25 +145,12 @@ export function Table({
         {Array.from({ length: rowCount }, (_, rowIdx) => (
           <tr key={rowIdx}>
             {headers.map(
-              (
-                {
-                  content,
-                  children,
-                  contentClass = "",
-                  cellBg,
-                  cellFontSize,
-                  ...props
-                },
-                colIdx,
-              ) => (
+              ({ content, children, contentClass = "", cellBg, cellFontSize, ...props }, colIdx) => (
                 <td
                   key={colIdx}
                   {...props}
                   className={joinClasses(contentClass, parentContentClass)}
-                  style={{
-                    "--table-cell-color": cellBg,
-                    "--table-cell-fontsize": cellFontSize,
-                  }}
+                  style={{ "--table-cell-color": cellBg, "--table-cell-fontsize": cellFontSize }}
                 >
                   {content[rowIdx]}
                 </td>

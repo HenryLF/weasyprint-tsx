@@ -1,8 +1,8 @@
 import { watch } from "fs";
-import { join } from "path";
 import { buildHTML, buildPDF } from "./build";
 import { loadConfig } from "./config";
 import { bumpPing, startServer } from "./server";
+import { join } from "path";
 
 export async function buildOnce(output?: string) {
   const cfg = await loadConfig();
@@ -22,7 +22,7 @@ export async function buildOnce(output?: string) {
 
 export async function devMode(output?: string) {
   const cfg = await loadConfig();
-  const WATCH_DIRS = cfg.dev.watch.map((p) => join(process.cwd(), p));
+  const WATCH_DIR = join(process.cwd(), cfg.dev.watch);
 
   if (output) cfg.io.output = cfg.io.output ?? output;
   process.stdout.write(`Dev: http://localhost:${cfg.dev.port}`);
@@ -52,12 +52,10 @@ export async function devMode(output?: string) {
 
   startServer(cfg.dev.port, cfg.io.buildDir);
 
-  WATCH_DIRS.forEach((dir) =>
-    watch(dir, { recursive: true }, async (_, f) => {
-      process.stdout.write(`file changed ${f}`);
-      await rebuild();
-    }),
-  );
+  watch(WATCH_DIR, {}, async (ev, f) => {
+    process.stdout.write(`${ev} : file changed ${f}`);
+    await rebuild();
+  });
 
   await Bun.sleep(Infinity);
 }

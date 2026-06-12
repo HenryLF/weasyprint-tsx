@@ -19,21 +19,16 @@ body {
   font-size: 10pt;
   line-height: 1.75;
   font-family: system-ui, sans-serif;
-  font-family: "Public Sans Variable", sans-serif;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   line-height: 1.2;
 }
-
-
 
 code {
   font-family: ui-monospace, monospace;
   font-size: 0.88em;
-  background: #4490dd;
+  background: #f1f5f9;
   padding: 0.1em 0.3em;
   border-radius: 3px;
 }

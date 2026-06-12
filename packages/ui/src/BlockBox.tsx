@@ -16,8 +16,8 @@ interface BlockProps extends ComponentProps<"div"> {
   align?: "middle" | "top" | "bottom";
 }
 
-export function Block({ children }: BlockProps) {
-  return children;
+export function Block(_props: BlockProps): null {
+  return null;
 }
 
 export function BlockBox({
@@ -40,10 +40,7 @@ export function BlockBox({
   const child = blockList.map(
     ({ props: { style, ratio = 1, className, centered, align, ...props } }) => (
       <div
-        style={mergeStyle(style, {
-          "--ratio": ratio,
-          "--block-box-align": align,
-        })}
+        style={mergeStyle(style, { "--ratio": ratio, "--block-box-align": align })}
         className={joinClasses(
           className,
           styles.block,
