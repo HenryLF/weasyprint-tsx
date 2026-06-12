@@ -7,5 +7,8 @@
   "files": [
     "cli.js",
     "template"
-  ]
+  ],
+  "dependencies": {
+    "highlight.js" : "11.11.1"
+  }
 }

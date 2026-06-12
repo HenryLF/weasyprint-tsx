@@ -1,0 +1,9 @@
+.stack {
+  & > * {
+    margin-left: var(--stack-ml, 0);
+    margin-right: var(--stack-mr, 0);
+    &:not(:last-child) {
+      margin-bottom: var(--stack-gap, 0);
+    }
+  }
+}

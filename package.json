@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "bun packages/build/src/cli.ts --watch",
-    "init" : "bun packages/create/cli.ts"
+    "build": "bun packages/build/src/cli.ts",
+    "init": "bun packages/create/cli.ts"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@fontsource-variable/public-sans": "^5.2.7"
+  }
 }
