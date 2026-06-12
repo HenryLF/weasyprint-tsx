@@ -1,12 +1,12 @@
-import { join } from "path";
-import { DConfig } from "./config";
+import tailwindcss from "@tailwindcss/postcss";
 import { BunPlugin } from "bun";
+import { join } from "path";
 import postcss from "postcss";
 import customProperties from "postcss-custom-properties";
-import tailwindcss from "@tailwindcss/postcss";
-import { injectDevScript } from "./server";
 import { h } from "preact";
 import { renderToStaticMarkup } from "preact-render-to-string";
+import { DConfig } from "./config";
+import { DEV_SCRIPT } from "./server";
 
 const tailwindPlugin: BunPlugin = {
   name: "tailwind-postcss",
@@ -49,17 +49,17 @@ export async function buildHTML(cfg: DConfig, dev: boolean = false) {
     join(BUILD_DIR, `index.js?t=${performance.now()}`)
   );
 
-  const html = "<!DOCTYPE html>" + renderToStaticMarkup(h(Document, {}));
-
-  await Bun.write(BUILD_PATH, html);
+  let html = "<!DOCTYPE html>" + renderToStaticMarkup(h(Document, {}));
 
   if (dev) {
-    injectDevScript(BUILD_PATH);
+    html = html.replace("</html>", `${DEV_SCRIPT}</html>`);
   }
+  await Bun.write(BUILD_PATH, html);
   process.stdout.write(
     `Bun HTML build -- ${(performance.now() - t0).toFixed(2)}ms\n`,
   );
-  return Bun.hash(html);
+  const css = await Bun.file(join(BUILD_DIR, "index.css")).text();
+  return Bun.hash(html + css);
 }
 
 function buildArgs(cfg: DConfig): string[] {

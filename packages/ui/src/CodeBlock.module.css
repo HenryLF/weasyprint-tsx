@@ -1,0 +1,4 @@
+.pre {
+  background-color: var(--codeblock-bg, #0f172a);
+  color: var(--codeblock-color, #cbd5e1);
+}

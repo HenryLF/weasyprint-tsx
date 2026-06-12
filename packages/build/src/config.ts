@@ -24,7 +24,7 @@ export interface Config {
   };
   dev?: {
     port?: number;
-    watch?: string;
+    watch?: string[];
   };
 }
 
@@ -44,7 +44,7 @@ const defaultConfig = {
   },
   dev: {
     port: 3000,
-    watch: "src",
+    watch: ["src"],
   },
 } satisfies Config;
 

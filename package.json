@@ -1,9 +1,14 @@
 {
   "name": "weasyprint-tsx",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "bin": {
+    "create-weasyprint-tsx": "bun packages/create/cli.ts",
+    "build-weasyprint-tsx": "bun packages/build/src/cli.ts"
+  },
   "scripts": {
     "dev": "bun packages/build/src/cli.ts --watch",
-    "init" : "bun packages/create/cli.ts"
+    "init": "bun packages/create/cli.ts",
+    "build": "bun packages/build/src/cli.ts"
   },
   "workspaces": [
     "packages/*"
