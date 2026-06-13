@@ -2,7 +2,7 @@ import { ComponentProps } from "preact";
 import styles from "./Stack.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 
-interface StackProps extends ComponentProps<"div"> {
+export interface StackProps extends ComponentProps<"div"> {
   gap?: number | string;
   align?: "left" | "right";
 }

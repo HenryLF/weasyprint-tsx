@@ -22,7 +22,7 @@ export function Entry(_props: TableEntryProps): null {
   return null;
 }
 
-interface TableProps extends ComponentProps<"table"> {
+export interface TableProps extends ComponentProps<"table"> {
   orientation?: "col" | "row";
   contentClass?: string;
   headerClass?: string;

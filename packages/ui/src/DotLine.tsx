@@ -2,7 +2,7 @@ import { ComponentProps } from "preact";
 import styles from "./DotLine.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 
-interface DotLineProps extends ComponentProps<"span"> {
+export interface DotLineProps extends ComponentProps<"span"> {
   num?: number;
   width?: number | string;
   inline?: boolean;

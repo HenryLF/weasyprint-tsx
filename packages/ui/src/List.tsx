@@ -9,24 +9,24 @@ export type CounterType =
   | "lower-roman"
   | "upper-roman";
 
-interface ListItemProps extends ComponentProps<"div"> {
+export interface ListItemProps extends ComponentProps<"div"> {
   count?: number;
   marker?: string;
 }
 
-interface ListProps extends ComponentProps<"div"> {
+export interface ListProps extends ComponentProps<"div"> {
   pre?: ComponentChildren;
   gap?: string | number;
 }
 
-interface OLProps extends ListProps {
+export interface OLProps extends ListProps {
   start?: number;
   counterType?: CounterType;
   markerPre?: string;
   markerPost?: string;
 }
 
-interface ULProps extends ListProps {
+export interface ULProps extends ListProps {
   marker?: string;
 }
 

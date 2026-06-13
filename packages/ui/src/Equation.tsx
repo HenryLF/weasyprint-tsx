@@ -5,11 +5,12 @@ import { ComponentProps } from "preact";
 import styles from "./Equation.module.css";
 import { joinClasses } from "./utils";
 
-interface EquationProps extends Omit<ComponentProps<"span">, "children"> {
+export interface EquationProps extends Omit<ComponentProps<"span">, "children"> {
   tex: string;
   displayMode?: boolean;
   aligned?: boolean;
   chemical?: boolean;
+  numberFormat?: boolean;
 }
 export function Equation({
   tex,
@@ -17,15 +18,16 @@ export function Equation({
   className = "",
   aligned = false,
   chemical = false,
+  numberFormat = true,
   ...props
 }: EquationProps) {
+  const numberFormated = numberFormat ? formatNumber(tex) : tex;
   const alignedCode = aligned
     ? `\\begin{aligned}
-${tex}
+${numberFormated}
 \\end{aligned}`
-    : tex;
+    : numberFormated;
   const chemCode = chemical ? `\\ce{${alignedCode}}` : alignedCode;
-
   return (
     <span
       dangerouslySetInnerHTML={{
@@ -35,4 +37,51 @@ ${tex}
       {...props}
     />
   );
+}
+
+export interface SymbolProps {
+  children?: string;
+}
+
+export function symbolFactory(
+  fn: (txt?: string, children?: string) => string | undefined,
+  txt?: string,
+  init?: string,
+) {
+  return function ({ children = init }: SymbolProps) {
+    return <Equation tex={fn(txt, children) ?? ""} />;
+  };
+}
+
+export function underscriptFactory(txt: string, init?: string) {
+  return symbolFactory(
+    (txt, children) => (children ? `${txt}_{${children}}` : `${txt}`),
+    txt,
+    init,
+  );
+}
+
+export function functionFactory(txt: string, init: string = "x") {
+  return symbolFactory(
+    (txt, children) => (children ? `${txt}(${children})` : `${txt}`),
+    txt,
+    init,
+  );
+}
+
+function formatNumber(tex: string | undefined) {
+  if (!tex) return "";
+  return tex.replace(/\d+(?:\.\d+)?/g, (match) => {
+    const [intPart, decPart] = match.split(".");
+    const formattedInt = intPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1\\,");
+    if (decPart === undefined) return formattedInt;
+    const formattedDec = decPart.replace(/(\d{3})(?=\d)/g, "$1\\,");
+    return `${formattedInt},${formattedDec}\\:`;
+  });
+}
+
+export function Eq(props: SymbolProps) {
+  return symbolFactory((_, children) => {
+    return formatNumber(children);
+  })(props);
 }

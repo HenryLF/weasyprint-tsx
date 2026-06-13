@@ -7,17 +7,9 @@ import { bumpPing, startServer } from "./server";
 export async function buildOnce(output?: string) {
   const cfg = await loadConfig();
   if (output) cfg.io.output = output;
-  let t0 = performance.now();
 
   await buildHTML(cfg);
-  process.stdout.write(
-    `Bun HTML build -- ${(performance.now() - t0).toFixed(2)} ms`,
-  );
   await buildPDF(cfg);
-  t0 = performance.now();
-  process.stdout.write(
-    `Weasyprint PDF build -- ${(performance.now() - t0).toFixed(2)} ms → ${cfg.io.output}`,
-  );
 }
 
 export async function devMode(output?: string) {

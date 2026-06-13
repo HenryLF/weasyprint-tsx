@@ -1,7 +1,7 @@
 import { ComponentProps } from "preact";
 import styles from "./Page.module.css";
 import { joinClasses, mergeStyle } from "./utils";
-interface PageProps {
+export interface PageProps {
   page?: string;
 }
 

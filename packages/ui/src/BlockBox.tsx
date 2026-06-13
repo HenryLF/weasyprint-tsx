@@ -2,7 +2,7 @@ import { ComponentProps, toChildArray, VNode } from "preact";
 import styles from "./BlockBox.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 
-interface BlockBoxProps extends ComponentProps<"div"> {
+export interface BlockBoxProps extends ComponentProps<"div"> {
   children: VNode<BlockProps>[] | VNode<BlockProps>;
   gap?: string;
   basis?: number;
@@ -10,7 +10,7 @@ interface BlockBoxProps extends ComponentProps<"div"> {
   align?: "middle" | "top" | "bottom";
 }
 
-interface BlockProps extends ComponentProps<"div"> {
+export interface BlockProps extends ComponentProps<"div"> {
   ratio?: number;
   centered?: boolean;
   align?: "middle" | "top" | "bottom";

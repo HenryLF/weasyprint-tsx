@@ -4,7 +4,7 @@ import { ComponentProps } from "preact";
 import styles from "./CodeBlock.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 
-interface CodeBlockProps extends Omit<ComponentProps<"code">, "children"> {
+export interface CodeBlockProps extends Omit<ComponentProps<"code">, "children"> {
   language: string;
   code: string;
   bgColor?: string;

@@ -2,9 +2,9 @@ import { ComponentProps, ComponentType } from "preact";
 import styles from "./Title.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 
-type Htype = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type Htype = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-type Hprops<h extends Htype> = ComponentProps<h> & {
+export type Hprops<h extends Htype> = ComponentProps<h> & {
   marker?: string;
   color?: string;
   fontSize?: string;
@@ -73,7 +73,7 @@ export function H6({ className = "", marker, color, fontSize, style, ...props }:
 
 const TAG_MAP = { h1: H1, h2: H2, h3: H3, h4: H4, h5: H5, h6: H6 };
 
-type TitleProps<h extends Htype> = Hprops<h> & { type: h };
+export type TitleProps<h extends Htype> = Hprops<h> & { type: h };
 export function Title<h extends Htype>({ type, ...props }: TitleProps<h>) {
   const Tag = TAG_MAP[type] as ComponentType<Hprops<h>>;
   return <Tag {...(props as Hprops<h>)} />;
