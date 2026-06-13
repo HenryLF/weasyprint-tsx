@@ -5,8 +5,8 @@ export type { CodeBlockProps } from "./CodeBlock";
 export { DotLine } from "./DotLine";
 export type { DotLineProps } from "./DotLine";
 export {
-    Eq, Equation,
-    functionFactory, symbolFactory,
+    Equation,
+    functionFactory, LtX, symbolFactory,
     underscriptFactory
 } from "./Equation";
 export type { EquationProps, SymbolProps } from "./Equation";

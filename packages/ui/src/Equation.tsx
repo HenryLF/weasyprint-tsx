@@ -80,7 +80,7 @@ function formatNumber(tex: string | undefined) {
   });
 }
 
-export function Eq(props: SymbolProps) {
+export function LtX(props: SymbolProps) {
   return symbolFactory((_, children) => {
     return formatNumber(children);
   })(props);

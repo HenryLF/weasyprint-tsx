@@ -1,5 +1,5 @@
 .ol {
-  & > .li {
+  .li {
     counter-increment: list-items;
     &::before {
       content: var(--ol-marker-pre, "") counter(list-items, decimal)
