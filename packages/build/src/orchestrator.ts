@@ -17,7 +17,7 @@ export async function devMode(output?: string) {
   const WATCH_DIRS = cfg.dev.watch.map((p) => join(process.cwd(), p));
 
   if (output) cfg.io.output = cfg.io.output ?? output;
-  process.stdout.write(`Dev: http://localhost:${cfg.dev.port}`);
+  process.stdout.write(`Dev: http://localhost:${cfg.dev.port}\n`);
 
   let pdfBusy = false;
   let lastHash: number | BigInt = 0;

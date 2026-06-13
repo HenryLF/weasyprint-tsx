@@ -82,11 +82,9 @@ export default function Document() {
             </UL>
           </div>
           <div className="w-1/2">
-            <H3 color="#1e40af">
-              Quick start
-            </H3>
+            <H3 color="#1e40af">Quick start</H3>
             <OL>
-              <LI>bunx create-weasyprint-tsx my-doc</LI>
+              <LI>bunx @weasyprint-tsx/create my-doc</LI>
               <LI>cd my-doc &amp;&amp; bun install</LI>
               <LI>bun run dev</LI>
             </OL>

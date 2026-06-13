@@ -10,7 +10,7 @@ Write PDFs in TSX. Uses [Bun](https://bun.sh) to bundle your Preact components i
 ## Quick start
 
 ```bash
-bunx create-weasyprint-tsx my-doc
+bunx @weasyprint-tsx/create my-doc
 cd my-doc
 bun install
 bun run dev

@@ -48,7 +48,7 @@ const defaultConfig = {
   },
 } satisfies Config;
 
-export type DConfig = typeof defaultConfig;
+export type DConfig = Config & typeof defaultConfig;
 
 export function isObject(item: any) {
   return item && typeof item === "object" && !Array.isArray(item);
@@ -81,7 +81,7 @@ export async function loadConfig(): Promise<DConfig> {
   let config = defaultConfig;
   try {
     const { default: userConfig } = await import(`${configPath}`);
-    config = mergeDeep(config, userConfig) as  DConfig;
+    config = mergeDeep(config, userConfig) as Config as DConfig;
   } catch (e) {
     process.stdout.write(
       `No config file at ${configPath} found, using default.`,
