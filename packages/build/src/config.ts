@@ -11,7 +11,7 @@ export interface Config {
     stylesheets?: string[];
   };
   weasyprint?: {
-    path: string;
+    path?: string;
     verbose?: boolean;
     pdf_forms?: boolean;
     optimize_images?: boolean;
@@ -48,7 +48,7 @@ const defaultConfig = {
   },
 } satisfies Config;
 
-export type DConfig = typeof defaultConfig & Config;
+export type DConfig = typeof defaultConfig;
 
 export function isObject(item: any) {
   return item && typeof item === "object" && !Array.isArray(item);
@@ -81,7 +81,7 @@ export async function loadConfig(): Promise<DConfig> {
   let config = defaultConfig;
   try {
     const { default: userConfig } = await import(`${configPath}`);
-    config = mergeDeep(config, userConfig) as unknown as DConfig;
+    config = mergeDeep(config, userConfig) as  DConfig;
   } catch (e) {
     process.stdout.write(
       `No config file at ${configPath} found, using default.`,
