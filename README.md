@@ -95,5 +95,5 @@ export default config;
 `@weasyprint-tsx/ui` provides print-optimized Preact components. See [`packages/ui/README.md`](packages/ui/README.md) for the full API.
 
 ```tsx
-import { H1, H2, Page, UL, LI, Table, Entry } from "@weasyprint-tsx/ui";
+import { H1, H2, Page, UL, LI, Table, Entry, Chart } from "@weasyprint-tsx/ui";
 ```

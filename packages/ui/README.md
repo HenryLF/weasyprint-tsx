@@ -276,3 +276,77 @@ LaTeX equation rendering via KaTeX.
 | `displayMode` | `boolean` | `false` | Render as block-level equation |
 | `aligned` | `boolean` | `false` | Wrap in `\begin{aligned}…\end{aligned}` |
 | `chemical` | `boolean` | `false` | Wrap in `\ce{…}` for chemical notation |
+
+---
+
+## Chart
+
+Renders a [chart.js](https://www.chartjs.org/) chart server-side as a base64-encoded PNG `<img>`.
+
+### `Chart`
+
+```tsx
+import type { ChartConfiguration } from "chart.js";
+import { Chart } from "@weasyprint-tsx/ui";
+
+const config: ChartConfiguration = {
+  type: "bar",
+  data: {
+    labels: ["Jan", "Feb", "Mar"],
+    datasets: [{ label: "Sales", data: [12, 8, 21] }],
+  },
+};
+
+<Chart config={config} width={600} height={300} />
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `config` | `ChartConfiguration` | — | chart.js configuration object |
+| `width` | `number` | `800` | Canvas width in pixels |
+| `height` | `number` | `500` | Canvas height in pixels |
+| `...rest` | `Omit<ComponentProps<"img">, "src">` | — | All standard `<img>` attributes except `src` |
+
+---
+
+### `chartFunction`
+
+Samples a numeric function into a data array for chart datasets. Produces `sample + 1` values evaluated at `n * step` for `n` in `0..sample`.
+
+```ts
+chartFunction(func, options?)
+```
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `func` | `(n: number) => number` | — | Function to sample |
+| `options.step` | `number` | `1` | Multiplier applied to the index before calling `func` |
+| `options.sample` | `number` | `100` | Number of intervals (yields `sample + 1` points) |
+
+```tsx
+import { Chart, chartFunction } from "@weasyprint-tsx/ui";
+
+<Chart config={{
+  type: "line",
+  data: {
+    labels: chartFunction(n => n, { step: 0.1 }),
+    datasets: [{ label: "sin(x)", data: chartFunction(Math.sin, { step: 0.1 }) }],
+  },
+}} />
+```
+
+---
+
+### `labelFunction`
+
+Same as `chartFunction` but the sampling function may return a `number` or `string`. Use to generate axis labels.
+
+```ts
+labelFunction(func, options?)
+```
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `func` | `(n: number) => number \| string` | — | Function to sample |
+| `options.step` | `number` | `1` | Multiplier applied to the index |
+| `options.sample` | `number` | `100` | Number of intervals (yields `sample + 1` values) |

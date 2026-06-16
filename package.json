@@ -1,6 +1,6 @@
 {
   "name": "weasyprint-tsx",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "bin": {
     "create-weasyprint-tsx": "bun packages/create/cli.ts",
     "build-weasyprint-tsx": "bun packages/build/src/cli.ts"

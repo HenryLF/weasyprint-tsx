@@ -1,3 +1,5 @@
+export { Chart, chartFunction, labelFunction } from "./Chart";
+export type { ChartProps } from "./Chart";
 export { Block, BlockBox } from "./BlockBox";
 export type { BlockBoxProps, BlockProps } from "./BlockBox";
 export { CodeBlock } from "./CodeBlock";

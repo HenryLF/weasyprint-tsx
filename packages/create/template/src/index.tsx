@@ -1,6 +1,5 @@
+import { Chart, H1, H2, LI, UL } from "@weasyprint-tsx/ui";
 import "./index.css";
-
-import { H1, H2, LI, UL } from "@weasyprint-tsx/ui";
 
 export default function Document() {
   return (
@@ -13,12 +12,33 @@ export default function Document() {
       <body>
         <H1>My Document</H1>
         <H2>Introduction</H2>
-        <p>Edit <code>src/index.tsx</code> to start writing your document.</p>
+        <p>
+          Edit <code>src/index.tsx</code> to start writing your document.
+        </p>
         <UL>
-          <LI>Use components from <code>@weasyprint-tsx/ui</code></LI>
-          <LI>Style with Tailwind utility classes or plain CSS in <code>src/index.css</code></LI>
-          <LI>Run <code>bun run dev</code> for live preview</LI>
+          <LI>
+            Use components from <code>@weasyprint-tsx/ui</code>
+          </LI>
+          <LI>
+            Style with Tailwind utility classes or plain CSS in{" "}
+            <code>src/index.css</code>
+          </LI>
+          <LI>
+            Run <code>bun run dev</code> for live preview
+          </LI>
         </UL>
+        <H2>Chart Example</H2>
+        <Chart
+          config={{
+            type: "bar",
+            data: {
+              labels: ["Jan", "Feb", "Mar"],
+              datasets: [{ label: "Sales", data: [12, 8, 21] }],
+            },
+          }}
+          width={600}
+          height={300}
+        />
       </body>
     </html>
   );

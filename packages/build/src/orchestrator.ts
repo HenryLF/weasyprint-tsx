@@ -46,7 +46,7 @@ export async function devMode(output?: string) {
 
   WATCH_DIRS.forEach((dir) =>
     watch(dir, { recursive: true }, async (_, f) => {
-      process.stdout.write(`file changed ${f}`);
+      process.stdout.write(`file changed ${f}\n`);
       await rebuild();
     }),
   );

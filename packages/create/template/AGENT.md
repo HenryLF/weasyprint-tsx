@@ -114,6 +114,5 @@ See the full API: https://github.com/weasyprint-tsx/weasyprint-tsx/blob/main/pac
 - **No `@media screen`** — the document is rendered in print media; use `@media print` or no media query
 - **Page geometry** belongs in `@page` rules, not on `html` or `body`
 - **All layout** should use CSS that WeasyPrint supports. Flexbox and CSS Grid have partial support — prefer block layout or the `BlockBox`/`Block` components for multi-column content
-- **Components are Preact**, not React — use `class` not `className` for raw HTML elements (Preact accepts both, but prefer `class`)
 - **Images** must be embedded as base64 data URIs or served by the dev server; external URLs may not resolve during build
 - **Fonts** must be declared in CSS with `@font-face` or imported via Tailwind; Google Fonts CDN links work at build time
