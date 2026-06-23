@@ -20,6 +20,8 @@ export { Stack } from "./Stack";
 export type { StackProps } from "./Stack";
 export { Entry, Table } from "./Table";
 export type { TableEntryProps, TableProps } from "./Table";
+export { QrCode } from "./QrCode";
+export type { QrCodeProps } from "./QrCode";
 export { H1, H2, H3, H4, H5, H6, ResetCounter, Title } from "./Titles";
 export type { Hprops, Htype, TitleProps } from "./Titles";
 export * from "./utils";

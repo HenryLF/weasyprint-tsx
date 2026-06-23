@@ -5,7 +5,10 @@ import { ComponentProps } from "preact";
 import styles from "./Equation.module.css";
 import { joinClasses } from "./utils";
 
-export interface EquationProps extends Omit<ComponentProps<"span">, "children"> {
+export interface EquationProps extends Omit<
+  ComponentProps<"span">,
+  "children"
+> {
   tex: string;
   displayMode?: boolean;
   aligned?: boolean;
@@ -71,10 +74,10 @@ export function functionFactory(txt: string, init: string = "x") {
 
 function formatNumber(tex: string | undefined) {
   if (!tex) return "";
-  return tex.replace(/\d+(?:\.\d+)?/g, (match) => {
-    const [intPart, decPart] = match.split(".");
+  return tex.replace(/(?:\d{4,}(?:[\.|\,]\d+)?|\d+[\.|\,]\d{4,})/g, (match) => {
+    const [intPart, decPart] = match.split(/\.|\,/);
     const formattedInt = intPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1\\,");
-    if (decPart === undefined) return formattedInt;
+    if (decPart === undefined) return `${formattedInt}\\:`;
     const formattedDec = decPart.replace(/(\d{3})(?=\d)/g, "$1\\,");
     return `${formattedInt},${formattedDec}\\:`;
   });
