@@ -106,7 +106,11 @@ export function UL({
     "--list-gap": gap,
   });
   return (
-    <div {...props} className={joinClasses(className, styles.ul)} style={css}>
+    <div
+      style={css}
+      {...props}
+      className={joinClasses(className, styles.ul)}
+    >
       <Body pre={pre}>{children}</Body>
     </div>
   );

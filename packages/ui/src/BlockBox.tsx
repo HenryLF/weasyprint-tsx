@@ -8,6 +8,7 @@ export interface BlockBoxProps extends ComponentProps<"div"> {
   basis?: number;
   centered?: boolean;
   align?: "middle" | "top" | "bottom";
+  reversed?: boolean;
 }
 
 export interface BlockProps extends ComponentProps<"div"> {
@@ -25,6 +26,7 @@ export function BlockBox({
   className,
   basis,
   gap,
+  reversed = false,
   align,
   centered: parentCentered = true,
   style,
@@ -33,6 +35,8 @@ export function BlockBox({
   const blockList = toChildArray(children).filter(
     (child) => (child as VNode).type === Block,
   ) as VNode<BlockProps>[];
+
+  if (reversed) blockList.reverse();
 
   const blockBasis =
     basis ?? blockList.reduce((acc, b) => acc + (b.props.ratio ?? 1), 0);

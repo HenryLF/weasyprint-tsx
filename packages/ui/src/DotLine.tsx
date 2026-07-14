@@ -22,21 +22,29 @@ export function DotLine({
   ...props
 }: DotLineProps) {
   if (num === 0) return;
-  const css = mergeStyle(style, { width, "--dotline-color": color, "--dotline-height": lineHeight });
+  const css = mergeStyle(style, {
+    width,
+    "--dotline-color": color,
+    "--dotline-height": lineHeight,
+  });
 
   if (inline)
     return (
       <span
-        className={joinClasses(className, styles.inline)}
+        className={joinClasses(className, styles.dotLineInline)}
         style={css}
         {...props}
       />
     );
 
   return (
-    <span className={joinClasses(className, styles.block)} style={css} {...props}>
+    <span
+      className={joinClasses(className, styles.dotLineBlock)}
+      style={css}
+      {...props}
+    >
       {Array.from({ length: num }, (_, k) => (
-        <span key={k} className={styles.line}>
+        <span key={k} className={styles.dotLine}>
           {k === 0 ? children : null}
         </span>
       ))}

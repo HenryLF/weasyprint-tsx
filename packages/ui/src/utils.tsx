@@ -22,5 +22,9 @@ export function mergeStyle(
       .join(";");
     return extraStr ? `${base};${extraStr}` : base;
   }
-  return { ...(base?.value as CSSProperties), ...extra };
+  const baseObj =
+    base != null && typeof base === "object" && "value" in base
+      ? (base.value as CSSProperties)
+      : (base as CSSProperties | undefined);
+  return { ...baseObj, ...extra };
 }
