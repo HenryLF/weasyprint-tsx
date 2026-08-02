@@ -1,5 +1,5 @@
 import { ComponentProps } from "preact";
-import styles from "./Page.module.css";
+import "./Page.module.css";
 import { joinClasses, mergeStyle } from "./utils";
 export interface PageProps {
   page?: string;
@@ -11,7 +11,7 @@ export function PageBreak({ page }: PageProps) {
       style={{
         page,
       }}
-      className={styles.pagebreak}
+      className={"wsxUI_pagebreak"}
     />
   );
 }
@@ -21,12 +21,11 @@ export function Page({
   className = "",
   ...props
 }: PageProps & ComponentProps<"section">) {
-  const css = mergeStyle(style, { page });
-
+  const css = mergeStyle(style, { page })
   return (
     <section
       style={css}
-      className={joinClasses(className, styles.page)}
+      className={joinClasses(className, "wsxUI_page")}
       {...props}
     />
   );

@@ -1,4 +1,4 @@
-.pagebreak {
+.wsxUI_pagebreak {
   break-before: always;
   height: 0;
   width: 0;
@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.page {
+.wsxUI_page {
   min-height: 100%;
   width: 100%;
   break-before: always;

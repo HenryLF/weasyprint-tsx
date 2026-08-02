@@ -3,6 +3,7 @@ node_modules
 bun.lock
 package-lock.json
 .npmignore
+.claude
 testUI
 *.pdf
 !ReadMe.pdf

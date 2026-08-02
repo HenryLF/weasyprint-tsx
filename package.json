@@ -12,5 +12,11 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "preact": "^10.29.2"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.3.2"
+  }
 }

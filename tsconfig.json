@@ -2,15 +2,26 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
-    "types": ["bun-types"],
+    "types": [
+      "bun-types"
+    ],
     "strict": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
     "target": "ESNext",
     "paths": {
-      "@weasyprint-tsx/ui": ["./packages/ui/src"],
-      "@weasyprint-tsx/ui/*": ["./packages/ui/src/*"],
-      "@weasyprint-tsx/build": ["./packages/build/src"]
+      "@weasyprint-tsx/ui": [
+        "./packages/ui/src"
+      ],
+      "@weasyprint-tsx/ui/*": [
+        "./packages/ui/src/*"
+      ],
+      "@weasyprint-tsx/build": [
+        "./packages/build/src"
+      ]
     }
-  }
+  },
+  "exclude": [
+    "./packages/create/template/global.d.ts"
+  ]
 }

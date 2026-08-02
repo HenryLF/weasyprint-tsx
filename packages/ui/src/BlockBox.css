@@ -1,0 +1,11 @@
+.wsx-blockbox {
+    display: block;
+    margin-left: calc(-1 * var(--wsx-blockbox-gap, 0));
+}
+
+.wsx-block {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: var(--wsx---blockbox-align, middle);
+    padding-left: var(--wsx-blockbox-gap, 0);
+}
