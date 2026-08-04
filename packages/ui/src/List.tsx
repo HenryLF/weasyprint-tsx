@@ -47,7 +47,7 @@ function renderLiFromContext(
     const id = ctx.setValue(props.value ?? ((n) => n + 1));
     return (
       <>
-        <div className="wsx--list--marker">
+        <div className="wsx--li--marker">
           {`${props.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`}
         </div>
         {children}
@@ -56,7 +56,7 @@ function renderLiFromContext(
   }
   return (
     <>
-      <div className="wsx--list--marker">{props.marker ?? ctx.marker}</div>
+      <div className="wsx--li--marker">{props.marker ?? ctx.marker}</div>
       {children}
     </>
   );
@@ -71,7 +71,7 @@ export function LI({
   ...props
 }: LiProps & ComponentProps<"div">) {
   return (
-    <div className={joinClasses(className, `wsx--list--item`)} {...props}>
+    <div className={joinClasses(className, `wsx--li`)} {...props}>
       <listContext.Consumer>
         {(ctx) => renderLiFromContext(ctx, children, { value, format, marker })}
       </listContext.Consumer>

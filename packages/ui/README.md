@@ -145,7 +145,7 @@ Ordered list wrapper. Children should be `<LI>` elements. Renders `<div classNam
 
 ### `LI`
 
-List item, used inside `UL` or `OL`. Renders `<div className="wsx--list--item">` containing a `<div className="wsx--list--marker">` plus the item content.
+List item, used inside `UL` or `OL`. Renders `<div className="wsx--li">` containing a `<div className="wsx--li--marker">` plus the item content.
 
 ```tsx
 <LI>Plain item</LI>
@@ -161,7 +161,7 @@ List item, used inside `UL` or `OL`. Renders `<div className="wsx--list--item">`
 | `format` | `(n: number) => string` | Overrides the parent `OL`'s format for this item only |
 | `...rest` | `ComponentProps<"div">` | All standard `<div>` attributes |
 
-**Class names:** `wsx--list--item` on the item `<div>`; `wsx--list--marker` on the inner marker `<div>`.
+**Class names:** `wsx--li` on the item `<div>`; `wsx--li--marker` on the inner marker `<div>`.
 
 **CSS variables:** none directly — `LI` renders inside its parent's indent/spacing context.
 

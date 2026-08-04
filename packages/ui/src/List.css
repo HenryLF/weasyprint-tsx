@@ -3,11 +3,11 @@
   padding-left: var(--wsx--list--indent, 0.5cm);
 }
 
-.wsx--list--item {
+.wsx--li {
   display: table;
 }
 
-.wsx--list--marker {
+.wsx--li--marker {
   display: table-cell;
   padding-right: var(--wsx--list--marker-spacing, 0.1cm);
 }
