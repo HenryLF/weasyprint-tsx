@@ -1,8 +1,10 @@
 import { renderToString } from "katex";
+import "katex/contrib/mhchem";
+import "katex/dist/katex.min.css";
 import { ComponentProps } from "preact";
 import "./Equation.css";
-import { joinClasses, mergeStyle } from "./utils";
 
+import { joinClasses, mergeStyle } from "./utils";
 export interface LatexProps extends ComponentProps<"div"> {
   children?: string;
   tex?: string;
