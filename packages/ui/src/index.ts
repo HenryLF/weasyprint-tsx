@@ -1,28 +1,23 @@
-export { Chart, chartFunction, labelFunction } from "./Chart";
-export type { ChartProps } from "./Chart";
 export { Block, BlockBox } from "./BlockBox";
 export type { BlockBoxProps, BlockProps } from "./BlockBox";
+export { Chart, chartFunction, labelFunction } from "./Chart";
+export type { ChartProps } from "./Chart";
 export { CodeBlock } from "./CodeBlock";
 export type { CodeBlockProps } from "./CodeBlock";
 export { DotLine } from "./DotLine";
 export type { DotLineProps } from "./DotLine";
-export {
-    Equation,
-    functionFactory, LtX, symbolFactory,
-    underscriptFactory
-} from "./Equation";
-export type { EquationProps, SymbolProps } from "./Equation";
+export { LaTeX } from "./Equation";
+export type { LatexProps } from "./Equation";
 export { LI, OL, UL } from "./List";
-export type { CounterType, ListItemProps, ListProps, OLProps, ULProps } from "./List";
 export { Page, PageBreak } from "./Page";
 export type { PageProps } from "./Page";
-export { Stack } from "./Stack";
+export { QrCode } from "./QrCode";
+export type { QrCodeProps } from "./QrCode";
+export { Stack, StackChild } from "./Stack";
 export type { StackProps } from "./Stack";
 export { Entry, Table } from "./Table";
 export type { TableEntryProps, TableProps } from "./Table";
-export { QrCode } from "./QrCode";
-export type { QrCodeProps } from "./QrCode";
-export { H1, H2, H3, H4, H5, H6, ResetCounter, Title } from "./Titles";
-export type { Hprops, Htype, TitleProps } from "./Titles";
+export { H1, H2, H3, H4, H5, H6 } from "./Titles";
+export type { Hprops, Htype } from "./Titles";
 export * from "./utils";
 

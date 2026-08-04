@@ -47,8 +47,9 @@ export function chartFunction(
 
 export function labelFunction(
   func: (n: number) => number | string,
-  options?: FunctionOptions
+  options?: FunctionOptions,
 ) {
   const { sample = 100, step = 1 } = options ?? {};
   return Array.from({ length: sample + 1 }, (_, n) => func(n * step));
 }
+

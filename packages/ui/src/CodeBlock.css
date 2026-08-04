@@ -1,0 +1,4 @@
+.wsx--code-block {
+  background-color: var(--wsx--code-block--bg, #0f172a);
+  color: var(--wsx--code-block--color, #cbd5e1);
+}

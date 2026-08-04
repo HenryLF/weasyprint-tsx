@@ -1,5 +1,5 @@
-import { ComponentProps, ComponentType } from "preact";
-import styles from "./Title.module.css";
+import { ComponentProps } from "preact";
+import "./Title.css";
 import { joinClasses, mergeStyle } from "./utils";
 
 export type Htype = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -8,98 +8,138 @@ export type Hprops<h extends Htype> = ComponentProps<h> & {
   marker?: string;
   color?: string;
   fontSize?: string;
+  count?: number;
 };
 
-export function H1({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h1">) {
+export function H1({
+  count,
+  marker,
+  color,
+  fontSize,
+  className,
+  style,
+  ...props
+}: Hprops<"h1">) {
   return (
     <h1
       data-marker={marker}
-      className={joinClasses(className, styles.h1)}
-      style={mergeStyle(style, { "--h1-color": color, "--h1-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h1")}
+      style={mergeStyle(style, {
+        "--wsx--h1--color": color,
+        "--wsx--h1--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h1 ${count}` : undefined,
+      })}
       {...props}
     />
   );
 }
-export function H2({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h2">) {
+export function H2({
+  count,
+  className,
+  marker,
+  color,
+  fontSize,
+  style,
+  ...props
+}: Hprops<"h2">) {
   return (
     <h2
       data-marker={marker}
-      className={joinClasses(className, styles.h2)}
-      style={mergeStyle(style, { "--h2-color": color, "--h2-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h2")}
+      style={mergeStyle(style, {
+        "--wsx--h2--color": color,
+        "--wsx--h2--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h2 ${count}` : undefined,
+      })}
       {...props}
     />
   );
 }
-export function H3({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h3">) {
+export function H3({
+  count,
+  className,
+  marker,
+  color,
+  fontSize,
+  style,
+  ...props
+}: Hprops<"h3">) {
   return (
     <h3
       data-marker={marker}
-      className={joinClasses(className, styles.h3)}
-      style={mergeStyle(style, { "--h3-color": color, "--h3-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h3")}
+      style={mergeStyle(style, {
+        "--wsx--h3--color": color,
+        "--wsx--h3--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h3 ${count}` : undefined,
+      })}
       {...props}
     />
   );
 }
-export function H4({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h4">) {
+export function H4({
+  count,
+  className,
+  marker,
+  color,
+  fontSize,
+  style,
+  ...props
+}: Hprops<"h4">) {
   return (
     <h4
       data-marker={marker}
-      className={joinClasses(className, styles.h4)}
-      style={mergeStyle(style, { "--h4-color": color, "--h4-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h4")}
+      style={mergeStyle(style, {
+        "--wsx--h4--color": color,
+        "--wsx--h4--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h4 ${count}` : undefined,
+      })}
       {...props}
     />
   );
 }
-export function H5({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h5">) {
+export function H5({
+  count,
+  className,
+  marker,
+  color,
+  fontSize,
+  style,
+  ...props
+}: Hprops<"h5">) {
   return (
     <h5
       data-marker={marker}
-      className={joinClasses(className, styles.h5)}
-      style={mergeStyle(style, { "--h5-color": color, "--h5-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h5")}
+      style={mergeStyle(style, {
+        "--wsx--h5--color": color,
+        "--wsx--h5--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h5 ${count}` : undefined,
+      })}
       {...props}
     />
   );
 }
-export function H6({ className = "", marker, color, fontSize, style, ...props }: Hprops<"h6">) {
+export function H6({
+  count,
+  className,
+  marker,
+  color,
+  fontSize,
+  style,
+  ...props
+}: Hprops<"h6">) {
   return (
     <h6
       data-marker={marker}
-      className={joinClasses(className, styles.h6)}
-      style={mergeStyle(style, { "--h6-color": color, "--h6-fontsize": fontSize })}
+      className={joinClasses(className, "wsx--h6")}
+      style={mergeStyle(style, {
+        "--wsx--h6--color": color,
+        "--wsx--h6--fontsize": fontSize,
+        counterSet: count ? `--wsx--counter-h6 ${count}` : undefined,
+      })}
       {...props}
-    />
-  );
-}
-
-const TAG_MAP = { h1: H1, h2: H2, h3: H3, h4: H4, h5: H5, h6: H6 };
-
-export type TitleProps<h extends Htype> = Hprops<h> & { type: h };
-export function Title<h extends Htype>({ type, ...props }: TitleProps<h>) {
-  const Tag = TAG_MAP[type] as ComponentType<Hprops<h>>;
-  return <Tag {...(props as Hprops<h>)} />;
-}
-
-export function ResetCounter({
-  type,
-  value,
-}: {
-  type: Htype | Htype[];
-  value?: number | (number | null)[];
-}) {
-  const types = Array.isArray(type) ? type : [type];
-  const values = Array.isArray(value) ? value : [value];
-  return (
-    <div
-      style={{
-        counterReset: types
-          .map((t, k) =>
-            `count-${t} ${(values[k % types.length] ?? 1) - 1}`.trim(),
-          )
-          .join(" "),
-        visibility: "hidden",
-        height: 0,
-        width: 0,
-      }}
     />
   );
 }

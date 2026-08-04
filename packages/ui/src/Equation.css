@@ -1,0 +1,3 @@
+.wsx--latex {
+  padding: var(--wsx--latex--padding, 2px);
+}

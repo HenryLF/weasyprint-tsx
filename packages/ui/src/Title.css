@@ -1,0 +1,85 @@
+.wsx--h1::before,
+.wsx--h2::before,
+.wsx--h3::before,
+.wsx--h4::before,
+.wsx--h5::before,
+.wsx--h6::before {
+  float: left;
+  clear: left;
+}
+
+.wsx--h1[data-marker]::before,
+.wsx--h2[data-marker]::before,
+.wsx--h3[data-marker]::before,
+.wsx--h4[data-marker]::before,
+.wsx--h5[data-marker]::before,
+.wsx--h6[data-marker]::before {
+  content: attr(data-marker);
+}
+
+.wsx--h1 {
+  color: var(--wsx--h1--color, inherit);
+  font-size: var(--wsx--h1--fontsize, inherit);
+  counter-reset: --wsx--counter-h2 --wsx--counter-h3 --wsx--counter-h4
+    --wsx--counter-h5 --wsx--counter-h6;
+  counter-increment: --wsx--counter-h1;
+}
+
+:where(.wsx--h1)::before {
+  content: counter(--wsx--counter-h1, upper-roman) ". ";
+}
+
+.wsx--h2 {
+  color: var(--wsx--h2--color, inherit);
+  font-size: var(--wsx--h2--fontsize, inherit);
+  counter-reset: --wsx--counter-h3 --wsx--counter-h4 --wsx--counter-h5
+    --wsx--counter-h6;
+  counter-increment: --wsx--counter-h2;
+}
+
+:where(.wsx--h2)::before {
+  content: counter(--wsx--counter-h2, decimal) ". ";
+}
+
+.wsx--h3 {
+  color: var(--wsx--h3--color, inherit);
+  font-size: var(--wsx--h3--fontsize, inherit);
+  counter-reset: --wsx--counter-h4 --wsx--counter-h5 --wsx--counter-h6;
+  counter-increment: --wsx--counter-h3;
+}
+
+:where(.wsx--h3)::before {
+  content: counter(--wsx--counter-h3, upper-alpha) ". ";
+}
+
+.wsx--h4 {
+  color: var(--wsx--h4--color, inherit);
+  font-size: var(--wsx--h4--fontsize, inherit);
+  counter-reset: --wsx--counter-h5 --wsx--counter-h6;
+  counter-increment: --wsx--counter-h4;
+}
+
+:where(.wsx--h4)::before {
+  content: counter(--wsx--counter-h4, decimal) ". ";
+}
+
+.wsx--h5 {
+  color: var(--wsx--h5--color, inherit);
+  font-size: var(--wsx--h5--fontsize, inherit);
+  counter-reset: --wsx--counter-h6;
+  counter-increment: --wsx--counter-h5;
+}
+
+:where(.wsx--h5)::before {
+  content: counter(--wsx--counter-h5, lower-alpha) ". ";
+}
+
+.wsx--h6 {
+  color: var(--wsx--h6--color, inherit);
+  font-size: var(--wsx--h6--fontsize, inherit);
+  counter-increment: --wsx--counter-h6;
+}
+
+:where(.wsx--h6)::before {
+  content: counter(--wsx--counter-h6, lower-roman) ". ";
+}

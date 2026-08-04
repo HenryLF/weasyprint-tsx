@@ -1,9 +1,9 @@
-.wsxUI_stack_child {
+.wsx--stack--child {
   display: table;
-  margin-left: var(--wsxUI-stack-ml, auto);
-  margin-right: var(--wsxUI-stack-mr, auto);
+  margin-left: var(--wsx--stack--ml, auto);
+  margin-right: var(--wsx--stack--mr, auto);
 
   &:not(:last-child) {
-    margin-bottom: var(--wsxUI-stack-gap, 5mm);
+    margin-bottom: var(--wsx--stack--gap, 5mm);
   }
 }

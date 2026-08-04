@@ -14,30 +14,32 @@ export function StackChild({ gap, align, ...props }: StackProps) {
   return <div {...props} />
 }
 
-export function Stack({ gap, align, style, children, ...props }: StackProps) {
+export function Stack({ gap, align, style, className, children, ...props }: StackProps) {
 
   const css = mergeStyle(style, {
-    "--wsxUI-stack-ml": align == "left" ? 0 : "auto",
-    "--wsxUI-stack-mr": align == "right" ? 0 : "auto",
+    "--wsx--stack--ml": align == "left" ? 0 : "auto",
+    "--wsx--stack--mr": align == "right" ? 0 : "auto",
+    "--wsx--stack--gap": gap,
   }
   )
   return (
     <div
       style={css}
+      className={joinClasses("wsx--stack", className)}
       {...props}
     >
       {(toChildArray(children) as VNode[]).map(e => {
         if (e.type === StackChild) {
           const { className, style, gap, align, ...props } = e.props as StackProps;
-          return <div className={joinClasses("wsxUI_stack_child", className)}
+          return <div className={joinClasses("wsx--stack--child", className)}
             style={mergeStyle(style, {
-              "--wsxUI-stack-ml": align == "left" ? 0 : "auto",
-              "--wsxUI-stack-mr": align == "right" ? 0 : "auto",
+              "--wsx--stack--ml": align == "left" ? 0 : "auto",
+              "--wsx--stack--mr": align == "right" ? 0 : "auto",
             })}
             {...props} />
         }
 
-        return <div className="wsxUI_stack_child">{e}</div>
+        return <div className="wsx--stack--child">{e}</div>
       })}
     </div>
   );

@@ -1,0 +1,55 @@
+.wsx--table {
+  --wsx--table--border-width: 1px;
+  --wsx--table--border-color: currentColor;
+  border-collapse: collapse;
+}
+
+.wsx--table th,
+.wsx--table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.wsx--table th {
+  background-color: var(--wsx--table--header-color, transparent);
+  font-size: var(--wsx--table--header-fontsize, inherit);
+}
+
+.wsx--table td {
+  background-color: var(--wsx--table--cell-color, transparent);
+  font-size: var(--wsx--table--cell-fontsize, inherit);
+}
+
+/* ── Row orientation ──────────────────────────────────────────── */
+.wsx--table--row td,
+.wsx--table--row th {
+  border-right: var(--wsx--table--border-width, 1px) solid var(--wsx--table--border-color, currentColor);
+  border-bottom: var(--wsx--table--border-width, 1px) solid var(--wsx--table--border-color, currentColor);
+}
+
+.wsx--table--row tr td:last-child,
+.wsx--table--row tr th:last-child {
+  border-right: none;
+}
+
+.wsx--table--row tr:last-child td,
+.wsx--table--row tr:last-child th {
+  border-bottom: none;
+}
+
+/* ── Col orientation ──────────────────────────────────────────── */
+.wsx--table--col td,
+.wsx--table--col th {
+  border-right: var(--wsx--table--border-width, 1px) solid var(--wsx--table--border-color, currentColor);
+  border-bottom: var(--wsx--table--border-width, 1px) solid var(--wsx--table--border-color, currentColor);
+}
+
+.wsx--table--col tr td:last-child,
+.wsx--table--col tr th:last-child {
+  border-right: none;
+}
+
+.wsx--table--col tbody tr:last-child td,
+.wsx--table--col tbody tr:last-child th {
+  border-bottom: none;
+}

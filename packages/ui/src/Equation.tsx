@@ -1,74 +1,45 @@
 import { renderToString } from "katex";
-import "katex/contrib/mhchem";
-import "katex/dist/katex.min.css";
 import { ComponentProps } from "preact";
-import styles from "./Equation.module.css";
-import { joinClasses } from "./utils";
+import "./Equation.css";
+import { joinClasses, mergeStyle } from "./utils";
 
-export interface EquationProps extends Omit<
-  ComponentProps<"span">,
-  "children"
-> {
-  tex: string;
+export interface LatexProps extends ComponentProps<"div"> {
+  children?: string;
+  tex?: string;
   displayMode?: boolean;
   aligned?: boolean;
   chemical?: boolean;
   numberFormat?: boolean;
+  padding?: number | string;
 }
-export function Equation({
+
+export function LaTeX({
+  children,
   tex,
-  displayMode,
-  className = "",
+  displayMode = false,
   aligned = false,
   chemical = false,
   numberFormat = true,
+  padding,
+  className,
+  style,
   ...props
-}: EquationProps) {
-  const numberFormated = numberFormat ? formatNumber(tex) : tex;
-  const alignedCode = aligned
-    ? `\\begin{aligned}
-${numberFormated}
-\\end{aligned}`
-    : numberFormated;
-  const chemCode = chemical ? `\\ce{${alignedCode}}` : alignedCode;
+}: LatexProps) {
+  let child = tex ?? children;
+  if (numberFormat) child = formatNumber(child);
+
   return (
-    <span
+    <div
       dangerouslySetInnerHTML={{
-        __html: renderToString(chemCode, { displayMode }),
+        __html: renderToString(
+          `${chemical ? "\\ce{" : ""} ${aligned ? "\\begin{aligned}" : ""} ${child} ${aligned ? "\\end{aligned}" : ""} ${chemical ? "}" : ""}`,
+          { displayMode },
+        ),
       }}
-      className={joinClasses(className, styles.equation)}
+      className={joinClasses("wsx--latex", className)}
+      style={mergeStyle(style, { "--wsx--latex--padding": padding })}
       {...props}
     />
-  );
-}
-
-export interface SymbolProps {
-  children?: string;
-}
-
-export function symbolFactory(
-  fn: (txt?: string, children?: string) => string | undefined,
-  txt?: string,
-  init?: string,
-) {
-  return function ({ children = init }: SymbolProps) {
-    return <Equation tex={fn(txt, children) ?? ""} />;
-  };
-}
-
-export function underscriptFactory(txt: string, init?: string) {
-  return symbolFactory(
-    (txt, children) => (children ? `${txt}_{${children}}` : `${txt}`),
-    txt,
-    init,
-  );
-}
-
-export function functionFactory(txt: string, init: string = "x") {
-  return symbolFactory(
-    (txt, children) => (children ? `${txt}(${children})` : `${txt}`),
-    txt,
-    init,
   );
 }
 
@@ -78,15 +49,12 @@ function formatNumber(tex: string | undefined) {
     const [intPart, decPart] = match.split(/\.|\,/);
     const formattedInt = intPart.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1\\,");
     const nextNonSpace = string.slice(offset + match.length).match(/\S/)?.[0];
-    const trailingSpace = nextNonSpace !== undefined && /[\\a-zA-Z]/.test(nextNonSpace) ? "\\:" : "";
+    const trailingSpace =
+      nextNonSpace !== undefined && /[\\a-zA-Z]/.test(nextNonSpace)
+        ? "\\:"
+        : "";
     if (decPart === undefined) return `${formattedInt}${trailingSpace}`;
     const formattedDec = decPart.replace(/(\d{3})(?=\d)/g, "$1\\,");
     return `${formattedInt},${formattedDec}${trailingSpace}`;
   });
-}
-
-export function LtX(props: SymbolProps) {
-  return symbolFactory((_, children) => {
-    return formatNumber(children);
-  })(props);
 }
