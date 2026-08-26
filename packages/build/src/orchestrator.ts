@@ -25,7 +25,7 @@ export async function devMode(output?: string) {
     try {
       const hash = await buildHTML(cfg, true);
       bumpPing();
-      if (hash !== lastHash && !pdfBusy) {
+      if (cfg.dev.buildPdf && hash !== lastHash && !pdfBusy) {
         lastHash = hash;
         pdfBusy = true;
         buildPDF(cfg)
