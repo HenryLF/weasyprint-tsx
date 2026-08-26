@@ -11,3 +11,10 @@
   display: table-cell;
   padding-right: var(--wsx--list--marker-spacing, 0.1cm);
 }
+
+
+.wsx--ul--item {
+  &::before {
+    content: var(--wsx--list--marker, "•");
+  }
+}
