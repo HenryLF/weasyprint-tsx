@@ -6,6 +6,7 @@ export interface ListItemProps extends ComponentProps<"div"> {
   value?: number;
   format?: (n: number) => string;
   marker?: string;
+  indent?: number | string;
   spacing?: number | string
 }
 
@@ -38,14 +39,19 @@ function renderLiFromContext(
   ctx: ListContextType,
   itemProps: ListItemProps,
 ) {
+  const { style, className, children, spacing, indent, marker, ...props } = itemProps
+  const css = mergeStyle(style, {
+    "--wsx--list--marker": cssString(marker),
+    "--wsx--list--marker-spacing": spacing,
+    "--wsx--list--indent": indent,
+  }
+  )
   if (ctx) {
     const id = ctx.setValue(itemProps.value ?? ((n) => n + 1));
-    const { className, children, spacing, style, ...props } = itemProps
-
     return (
       <div
         className={joinClasses(className, `wsx--li`)}
-        style={mergeStyle(style, { "--wsx--list--marker-spacing": spacing })}
+        style={css}
         {...props}>
         <div className="wsx--li--marker">
           {`${itemProps.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`}
@@ -55,12 +61,7 @@ function renderLiFromContext(
 
     );
   }
-  const { style, className, children, spacing, marker, ...props } = itemProps
-  const css = mergeStyle(style, {
-    "--wsx--list--marker": cssString(marker),
-    "--wsx--list--marker-spacing": spacing
-  },
-  )
+
   return (
     <div
       className={joinClasses(className, `wsx--li`, `wsx--ul--item`)}
