@@ -1,7 +1,8 @@
 .wsx--dotline {
   border-bottom: 1px dotted black;
-  display: block;
+  display: inline-block;
   width: 100%;
+  vertical-align: bottom;
   min-height: var(--wsx--dotline--line-height, 1em);
   margin-bottom: var(--wsx--dotline--margin-bottom, 0.2em);
 }
