@@ -7,7 +7,7 @@ export interface ListItemProps extends ComponentProps<"div"> {
   format?: (n: number) => string;
   marker?: string;
   indent?: number | string;
-  spacing?: number | string
+  spacing?: number | string;
 }
 
 interface ListProps extends ComponentProps<"div"> {
@@ -31,52 +31,42 @@ interface OLContextType {
   separator: string;
 }
 
-
 type ListContextType = OLContextType | null;
 const listContext = createContext<ListContextType>(null);
 
-function renderLiFromContext(
-  ctx: ListContextType,
-  itemProps: ListItemProps,
-) {
-  const { style, className, children, spacing, indent, marker, ...props } = itemProps
+function renderLiFromContext(ctx: ListContextType, itemProps: ListItemProps) {
+  const { style, className, spacing, indent, marker, format, ...props } =
+    itemProps;
   const css = mergeStyle(style, {
     "--wsx--list--marker": cssString(marker),
     "--wsx--list--marker-spacing": spacing,
     "--wsx--list--indent": indent,
-  }
-  )
+  });
   if (ctx) {
     const id = ctx.setValue(itemProps.value ?? ((n) => n + 1));
     return (
       <div
-        className={joinClasses(className, `wsx--li`)}
-        style={css}
-        {...props}>
-        <div className="wsx--li--marker">
-          {`${itemProps.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`}
-        </div>
-        {children}
-      </div>
-
+        className={joinClasses(className, `wsx--li`, "wsx--ol--items")}
+        style={mergeStyle(css, {
+          "--wsx--ol--marker": cssString(
+            `${itemProps.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`,
+          ),
+        })}
+        {...props}
+      />
     );
   }
 
   return (
     <div
-      className={joinClasses(className, `wsx--li`, `wsx--ul--item`)}
+      className={joinClasses(className, `wsx--li`, `wsx--ul--items`)}
       style={css}
       {...props}
-    >
-      {children}
-    </div>
+    />
   );
 }
 
-export function LI(
-  props
-    : ListItemProps) {
-
+export function LI(props: ListItemProps) {
   return (
     <listContext.Consumer>
       {(ctx) => renderLiFromContext(ctx, props)}

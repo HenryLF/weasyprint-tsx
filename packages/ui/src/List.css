@@ -1,10 +1,18 @@
 .wsx--li {
-  display: table;
+  text-indent: var(--wsx--list-indent, 1cm);
+  &::before {
+    margin-right: var(--wsx--list--marker-spacing, 1mm);
+  }
 }
 
-.wsx--li--marker {
-  display: table-cell;
-  padding-right: var(--wsx--list--marker-spacing, 0.1cm);
-  text-indent: var(--wsx--list--indent, 0.5cm);
+.wsx--ul--items {
+  &::before {
+    content: var(--wsx--list--marker, "•");
+  }
 }
 
+.wsx--ol--items {
+  &::before {
+    content: var(--wsx--ol--marker, "•");
+  }
+}
