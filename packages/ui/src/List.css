@@ -1,5 +1,5 @@
 .wsx--li {
-  text-indent: var(--wsx--list-indent, 1cm);
+  text-indent: var(--wsx--list--indent, 1cm);
   &::before {
     margin-right: var(--wsx--list--marker-spacing, 1mm);
   }
