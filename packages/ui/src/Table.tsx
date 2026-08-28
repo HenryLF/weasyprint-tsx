@@ -50,8 +50,8 @@ export function Table({
   const tableClass = joinClasses(
     className,
     "wsx--table",
-    orientation === "col" ? "wsx--table--row" : "wsx--table--col",
-  ).trim();
+    orientation === "col" ? "wsx--table--col" : "wsx--table--row",
+  );
 
   const tableStyle = mergeStyle(style, {
     "--wsx--table--header-color": headerBg,

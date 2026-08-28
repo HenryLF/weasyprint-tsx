@@ -6,6 +6,8 @@ interface LiProps {
   value?: number;
   format?: (n: number) => string;
   marker?: string;
+  separator?: string;
+  indent?: number | string;
 }
 interface ListProps {
   indent?: number | string;
@@ -47,8 +49,13 @@ function renderLiFromContext(
     const id = ctx.setValue(props.value ?? ((n) => n + 1));
     return (
       <>
-        <div className="wsx--li--marker">
-          {`${props.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`}
+        <div
+          className="wsx--li--marker"
+          style={{
+            "wsx-list-indent": props.indent,
+          }}
+        >
+          {`${props.format?.call(null, id) ?? ctx.format(id)}${props.separator ?? ctx.separator}`}
         </div>
         {children}
       </>
@@ -56,7 +63,14 @@ function renderLiFromContext(
   }
   return (
     <>
-      <div className="wsx--li--marker">{props.marker ?? ctx.marker}</div>
+      <div
+        className="wsx--li--marker"
+        style={{
+          "wsx-list-indent": props.indent,
+        }}
+      >
+        {props.marker ?? ctx.marker}
+      </div>
       {children}
     </>
   );
@@ -66,6 +80,8 @@ export function LI({
   value,
   format,
   marker,
+  separator,
+  indent,
   className,
   children,
   ...props
@@ -73,7 +89,15 @@ export function LI({
   return (
     <div className={joinClasses(className, `wsx--li`)} {...props}>
       <listContext.Consumer>
-        {(ctx) => renderLiFromContext(ctx, children, { value, format, marker })}
+        {(ctx) =>
+          renderLiFromContext(ctx, children, {
+            value,
+            format,
+            marker,
+            separator,
+            indent,
+          })
+        }
       </listContext.Consumer>
     </div>
   );
@@ -127,13 +151,12 @@ export function OL({
           }
           return value;
         },
-        format: format || ((s) => `${s}.`),
+        format: format || ((s) => `${s}`),
         separator: separator ?? ".",
       }}
     >
       <div
         style={mergeStyle(style, {
-          counterReset: "wsx--list--counter",
           "--wsx--list--indent": indent,
           "--wsx--list--marker-spacing": spacing,
         })}
