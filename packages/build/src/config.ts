@@ -25,6 +25,7 @@ export interface Config {
   dev?: {
     port?: number;
     watch?: string[];
+    buildPdf?: boolean;
   };
 }
 
@@ -45,6 +46,7 @@ const defaultConfig = {
   dev: {
     port: 3000,
     watch: ["src"],
+    buildPdf: true
   },
 } satisfies Config;
 

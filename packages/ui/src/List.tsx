@@ -1,110 +1,91 @@
-import { ComponentChild, ComponentProps, createContext } from "preact";
+import { ComponentProps, createContext } from "preact";
 import "./List.css";
-import { joinClasses, mergeStyle } from "./utils";
+import { cssString, joinClasses, mergeStyle } from "./utils";
 
-interface LiProps {
+export interface ListItemProps extends ComponentProps<"div"> {
   value?: number;
   format?: (n: number) => string;
   marker?: string;
-  separator?: string;
   indent?: number | string;
+  spacing?: number | string
 }
-interface ListProps {
+
+interface ListProps extends ComponentProps<"div"> {
   indent?: number | string;
   spacing?: number | string;
 }
 
-interface UlProps extends ComponentProps<"div">, ListProps {
+export interface UlProps extends ListProps {
   marker?: string;
 }
-interface OlProps extends ComponentProps<"div">, ListProps {
+export interface OlProps extends ListProps {
   start?: number;
   format?: (n: number) => string;
   separator?: string;
 }
 
 interface OLContextType {
-  type: "ol";
   getValue: () => number;
   setValue: (set: ((n: number) => number) | number) => number;
   format: (n: number) => string;
   separator: string;
 }
 
-interface ULContextType {
-  type: "ul";
-  marker: string;
-}
 
-type ListContextType = OLContextType | ULContextType | null;
+type ListContextType = OLContextType | null;
 const listContext = createContext<ListContextType>(null);
 
 function renderLiFromContext(
   ctx: ListContextType,
-  children: ComponentChild,
-  props: LiProps,
+  itemProps: ListItemProps,
 ) {
-  if (!ctx) return children;
-  if (ctx.type == "ol") {
-    const id = ctx.setValue(props.value ?? ((n) => n + 1));
+  const { style, className, children, spacing, indent, marker, ...props } = itemProps
+  const css = mergeStyle(style, {
+    "--wsx--list--marker": cssString(marker),
+    "--wsx--list--marker-spacing": spacing,
+    "--wsx--list--indent": indent,
+  }
+  )
+  if (ctx) {
+    const id = ctx.setValue(itemProps.value ?? ((n) => n + 1));
     return (
-      <>
-        <div
-          className="wsx--li--marker"
-          style={{
-            "wsx-list-indent": props.indent,
-          }}
-        >
-          {`${props.format?.call(null, id) ?? ctx.format(id)}${props.separator ?? ctx.separator}`}
+      <div
+        className={joinClasses(className, `wsx--li`)}
+        style={css}
+        {...props}>
+        <div className="wsx--li--marker">
+          {`${itemProps.format?.call(null, id) ?? ctx.format(id)}${ctx.separator}`}
         </div>
         {children}
-      </>
+      </div>
+
     );
   }
-  return (
-    <>
-      <div
-        className="wsx--li--marker"
-        style={{
-          "wsx-list-indent": props.indent,
-        }}
-      >
-        {props.marker ?? ctx.marker}
-      </div>
-      {children}
-    </>
-  );
-}
 
-export function LI({
-  value,
-  format,
-  marker,
-  separator,
-  indent,
-  className,
-  children,
-  ...props
-}: LiProps & ComponentProps<"div">) {
   return (
-    <div className={joinClasses(className, `wsx--li`)} {...props}>
-      <listContext.Consumer>
-        {(ctx) =>
-          renderLiFromContext(ctx, children, {
-            value,
-            format,
-            marker,
-            separator,
-            indent,
-          })
-        }
-      </listContext.Consumer>
+    <div
+      className={joinClasses(className, `wsx--li`, `wsx--ul--item`)}
+      style={css}
+      {...props}
+    >
+      {children}
     </div>
   );
 }
 
+export function LI(
+  props
+    : ListItemProps) {
+
+  return (
+    <listContext.Consumer>
+      {(ctx) => renderLiFromContext(ctx, props)}
+    </listContext.Consumer>
+  );
+}
+
 export function UL({
-  marker = "-",
+  marker,
   indent,
   spacing,
   className,
@@ -112,11 +93,12 @@ export function UL({
   ...props
 }: UlProps) {
   return (
-    <listContext.Provider value={{ type: "ul", marker }}>
+    <listContext.Provider value={null}>
       <div
         style={mergeStyle(style, {
           "--wsx--list--indent": indent,
           "--wsx--list--marker-spacing": spacing,
+          "--wsx--list--marker": cssString(marker),
         })}
         className={joinClasses(className, "wsx--list--ul")}
         {...props}
@@ -139,7 +121,6 @@ export function OL({
   return (
     <listContext.Provider
       value={{
-        type: "ol",
         getValue() {
           return value;
         },
@@ -151,8 +132,8 @@ export function OL({
           }
           return value;
         },
-        format: format || ((s) => `${s}`),
-        separator: separator ?? ".",
+        format: format || ((s) => `${s}.`),
+        separator: separator ?? "",
       }}
     >
       <div
